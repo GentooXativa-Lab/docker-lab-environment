@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  redis:
+    image: redislabs/redisearch:latest
+    container_name: gxlab-redis
+    ports:
+      - 6379:6379
+  mongodb:
+    image: mongo:latest
+    container_name: gxlab-mongodb
+    ports:
+      - 27017:27017
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: gxlab-rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest9999
+      RABBITMQ_DEFAULT_VHOST: gxlab
