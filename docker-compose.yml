@@ -1,23 +1,13 @@
-version: "3"
-
 services:
-  redis:
-    image: redislabs/redisearch:latest
-    container_name: gxlab-redis
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
     ports:
-      - 6379:6379
+      - "1883:1883"
+    volumes:
+      - ./docker-config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
   mongodb:
-    image: mongo:latest
-    container_name: gxlab-mongodb
+    image: mongo
+    container_name: mongodb
     ports:
-      - 27017:27017
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: gxlab-rabbitmq
-    ports:
-      - 5672:5672
-      - 15672:15672
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest9999
-      RABBITMQ_DEFAULT_VHOST: gxlab
+      - "27017:27017"
